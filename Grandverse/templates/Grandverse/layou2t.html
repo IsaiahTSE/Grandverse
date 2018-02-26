@@ -1,0 +1,49 @@
+<?php
+require_once('lib/htm.php');
+require_once('lib/connect.php');
+
+$tabTitle = 'Grandverse - Community List';
+
+printHeader(3);
+?>
+
+<div id="main-body">
+	<div class="community-top-sidebar">
+		<form method="GET" action="/titles/search" class="search">
+			<input type="text" name="query" placeholder="Search Communities" minlength="2" maxlength="20">
+			<input type="submit" value="q" title="Search">
+		</form>
+
+		<div id="identified-user-banner" style="margin-bottom: 10px;">
+			<a href="/identified_user_posts" data-pjax="#body" class="list-button us">
+				<span class="title">Get the latest news here!</span>
+				<span class="text">Posts from Verified Users</span>
+			</a>
+		</div>
+
+		<div class="post-list-outline" style="text-align: center">
+			<h2 class="label">What is Cedar?</h2>
+			<p style="width: 90%; display: inine-block; padding: 10px;">Grandverse is a Miiverse clone developed by Isaiah Contreras. Kid friendly and open source: https://github.com/IsaiahTSE/Grandverse-PHP</p>
+		</div>
+
+		<button type="button" onclick="window.location.href='/titles/new'" class="symbol button create-button" style="padding: 14px 60px;">
+			<span class="favorite-button-text">Create Community</span>
+		</button>
+		<br>
+		<button type="button" onclick="window.location.href='/communities/categories/all'" class="symbol button create-button" style="padding: 14px 60px;">
+			<span class="favorite-button-text">All Communities</span>
+		</button>
+	</div>
+	<div class="community-main">
+
+<?php
+
+if (!empty($_SESSION['signed_in'])) {
+
+	echo '<h3 class="community-title symbol community-favorite-title">Favorite Communities</h3>';
+
+	$get_fav_titles = $dbc->prepare('SELECT titles.title_id, titles.title_icon FROM titles, favorite_titles WHERE titles.title_id = favorite_titles.title_id AND favorite_titles.user_id = ? ORDER BY favorite_titles.fav_id DESC');
+	$get_fav_titles->bind_param('i', $_SESSION['user_id']);
+	$get_fav_titles->execute();
+	$fav_titles_result = $get_fav_titles->get_result();
+	if ($fav_titles_result->num_rows == 0) {
