@@ -1,0 +1,19 @@
+{% extends "Grandverse/layout.html" %}
+{% block main-body %}{% load grandverse_user %}
+{% user_sidebar request user user.profile 0 True %}
+<div class="main-column" id="help">
+<div class="post-list-outline">
+    <h2 class="label">Events</h2>
+    <div id="guide" class="help-content">
+      <div class="faq">
+        <p>Events on Grandverse!</p>
+		<ul>
+		<h1>Grandverse Creator
+		<li>Isaiah, the main developer of Grandverse! He is the only user that can wield this user title and badge.</li>
+		<h1>Beta Testers
+		<li>These were users who helped beta test Grandverse!
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
