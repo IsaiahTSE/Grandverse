@@ -1,0 +1,19 @@
+{% extends "Grandverse/layout.html" %}
+{% block main-body %}{% load grandverse_user %}
+{% user_sidebar request user user.profile 0 True %}
+<div class="main-column" id="help">
+<div class="post-list-outline">
+    <h2 class="label">Mii Creator</h2>
+    <div id="guide" class="help-content">
+      <div class="faq">
+        <p>MII MAKER</p>
+		<ul>
+		<h1>Grandverse Mii Creator
+		<li>A Mii Creator is coming to Grandverse. It will allow you to make Mii characters, give them voices and personalities!</li>
+		<h1>MII CREATING</h1>
+		<li>Mii Characters can be used in Grandverse in different ways.</li>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

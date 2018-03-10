@@ -1,0 +1,3 @@
+This folder contains the Mii Parts from Mii Maker. 
+
+DO NOT TAMPER WITH THESE FILES, AS THEY ARE USED IN MII CREATOR AND CAN MESS IT UP
