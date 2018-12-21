@@ -15,7 +15,7 @@ $user = $user_result->fetch_assoc();
 echo '<div id="sidebar" class="general-sidebar">';
 userContent($user, "");
 sidebarSetting();
-echo '</div><div class="main-column"><div class="post-list-outline"><h2 class="label">Messages Exchanged with Cedar Administration</h2><div class="list admin-messages">';
+echo '</div><div class="main-column"><div class="post-list-outline"><h2 class="label">Grandverse Administration</h2><div class="list admin-messages">';
 
 $get_admin_messages = $dbc->prepare('SELECT * FROM admin_messages WHERE admin_to = ? ORDER BY admin_date DESC LIMIT 50');
 $get_admin_messages->bind_param('i', $_SESSION['user_id']);
@@ -38,13 +38,13 @@ while($admin_message = $admin_messages_result->fetch_array()){
           echo 'Your '.($admin_message['is_reply'] == 0 ? 'post' : 'reply').' was identified as spam, so it was removed. Continued violations can restrict your use of Grandverse.';
           break;
         case 2:
-          echo 'Your '.($admin_message['is_reply'] == 0 ? 'post' : 'reply').' contained sexually explicit content, so it was removed. Continued violations may result in restrictions on your use of Grandverse.';
+          echo 'Your '.($admin_message['is_reply'] == 0 ? 'post' : 'reply').' contained sexually explicit content, so it was removed. This is a serious offense here, and we will need to restrict your Grandverse account access.';
           break;
 	case 3:
 	  echo 'Your '.($admin_message['is_reply'] == 0 ? 'post' : 'reply').' containted inappropiate language, so it was removed. If this violation happens one more time, your Grandverse account will be banned.'
 	  break;
 	case 4:
-	  echo 'Your  '.($admin_message['is_reply'] == 0 ? 'post' : 'reply').' contained hate speech. This doesn't allow a second chance at all, so we will restrict your use of Grandverse.'
+	  echo 'Your  '.($admin_message['is_reply'] == 0 ? 'post' : 'reply').' contained hate speech. We will have to restrict access to your Grandverse account.'
 	  break;
         }
 
